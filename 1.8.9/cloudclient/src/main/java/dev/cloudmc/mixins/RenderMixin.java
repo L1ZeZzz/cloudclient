@@ -1,6 +1,7 @@
 package dev.cloudmc.mixins;
 
 import dev.cloudmc.Cloud;
+import dev.cloudmc.feature.mod.impl.FreelookMod;
 import dev.cloudmc.helpers.render.GLHelper;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -48,8 +49,16 @@ public abstract class RenderMixin {
             GlStateManager.pushMatrix();
             GlStateManager.translate((float) x + 0.0F, (float) y + entityIn.height + 0.5F + yPos, (float) z);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
-            GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
-            GlStateManager.rotate(this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+            
+            // 🔥 关键修改：FreeLook 激活时使用 FreeLook 的摄像机角度
+            if (FreelookMod.cameraToggled) {
+                GlStateManager.rotate(-FreelookMod.cameraYaw, 0.0F, 1.0F, 0.0F);
+                GlStateManager.rotate(FreelookMod.cameraPitch, 1.0F, 0.0F, 0.0F);
+            } else {
+                GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
+                GlStateManager.rotate(this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+            }
+            
             GlStateManager.scale(-f1 * scale, -f1 * scale, f1);
             GlStateManager.disableLighting();
             GlStateManager.depthMask(false);
