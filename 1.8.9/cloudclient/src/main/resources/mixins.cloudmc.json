@@ -6,7 +6,6 @@
     "client": [
         "EntityRendererMixin",
         "FontRendererMixin",
-        "GuiMainMenuItem",
         "GuiScreenMixin",
         "ItemRendererMixin",
         "MinecraftMixin",
