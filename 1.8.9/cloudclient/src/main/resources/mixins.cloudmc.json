@@ -9,8 +9,6 @@
         "GuiScreenMixin",
         "ItemRendererMixin",
         "MinecraftMixin",
-        "Mode18IpsetMixin",
-        "RenderRendererMenuItem",
         "RenderMixin"
     ],
     "mixins": [
