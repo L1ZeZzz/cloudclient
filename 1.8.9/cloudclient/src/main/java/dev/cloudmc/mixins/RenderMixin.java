@@ -29,13 +29,19 @@ public abstract class RenderMixin {
         return null;
     }
 
+    // 🔥 你的自定义图案（放在 assets/cloudmc/icon/nametag_icon.png）
     private static final ResourceLocation ICON_TEXTURE = 
         new ResourceLocation("cloudmc", "icon/nametag_icon.png");
 
+    /**
+     * @author duplicat
+     * @reason NameTag tweaks
+     */
     @Overwrite
     protected void renderLivingLabel(Entity entityIn, String str, double x, double y, double z, int maxDistance) {
         double d0 = entityIn.getDistanceSqToEntity(this.renderManager.livingPlayer);
 
+        // 获取 NameTag 模块状态
         boolean nameTagToggled = Cloud.INSTANCE.modManager.getMod("NameTag").isToggled();
         int color = Cloud.INSTANCE.settingManager.getSettingByModAndName("NameTag", "Font Color").getColor().getRGB();
         float alpha = nameTagToggled ? Cloud.INSTANCE.settingManager.getSettingByModAndName("NameTag", "Opacity").getCurrentNumber() / 255f : 0.25f;
@@ -50,7 +56,7 @@ public abstract class RenderMixin {
             GlStateManager.translate((float) x + 0.0F, (float) y + entityIn.height + 0.5F + yPos, (float) z);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
 
-            // 🔥 FreeLook 激活时使用 FreeLook 的摄像机角度
+            // 🔥 关键：FreeLook 激活时使用 FreeLook 的摄像机角度
             if (FreelookMod.cameraToggled) {
                 GlStateManager.rotate(-FreelookMod.cameraYaw, 0.0F, 1.0F, 0.0F);
                 GlStateManager.rotate(FreelookMod.cameraPitch, 1.0F, 0.0F, 0.0F);
@@ -67,13 +73,14 @@ public abstract class RenderMixin {
             GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
 
             int i = 0;
+
             if (str.equals("deadmau5")) {
                 i = -10;
             }
 
             int j = fontrenderer.getStringWidth(str) / 2;
 
-            // 🔥 绘制头顶图标（名字左侧）
+            // 🔥 绘制图标（在名字左侧）
             if (nameTagToggled) {
                 GlStateManager.pushMatrix();
                 GlStateManager.scale(0.5F, 0.5F, 1.0F);
@@ -81,8 +88,7 @@ public abstract class RenderMixin {
                 Minecraft.getMinecraft().getTextureManager().bindTexture(ICON_TEXTURE);
 
                 int iconSize = 16;
-                // 🔥 修复：去掉 * 2，图标紧贴名字
-                int xPos = (-j - iconSize - 2) * 2;
+                int xPos = (-j - iconSize - 4) * 2;
                 int yPosIcon = (i - 2) * 2;
 
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -110,6 +116,7 @@ public abstract class RenderMixin {
             tessellator.draw();
             GlStateManager.enableTexture2D();
 
+            // 渲染名字（两层：阴影 + 主文字）
             fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, nameTagToggled ? color : 553648127);
             GlStateManager.enableDepth();
             GlStateManager.depthMask(true);
