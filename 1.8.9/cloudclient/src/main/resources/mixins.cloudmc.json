@@ -6,7 +6,6 @@
     "client": [
         "EntityRendererMixin",
         "FontRendererMixin",
-        "GuiImageMenuItem",
         "GuiMainMenuItem",
         "GuiScreenMixin",
         "ItemRendererMixin",
