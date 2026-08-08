@@ -1,24 +1,24 @@
 {
-  "required": true,
-  "package": "dev.cloudmc.mixins",
-  "refmap": "mixins.cloudmc.refmap.json",
-  "compatibilityLevel": "JAVA_8",
-  "client": [
-    "EntityRendererMixin",
-    "FontRendererMixin",
-    "GuiIngameMenuMixin",
-    "GuiInGameMixin",
-    "GuiMainMenuMixin",
-    "GuiScreenMixin",
-    "ItemRendererMixin",
-    "MinecraftMixin",
-    "ModelBipedMixin",
-    "RendererLivingEntityMixin",
-    "RenderMixin"
-  ],
-  "mixins": [
-    "GuiUtilsMixin",
-    "InventoryPlayerMixin",
-    "WorldMixin"
-  ]
+    "required": true,
+    "package": "dev.cloudm.cmixins",
+    "refmap": "mixins.cloudm.refmap.json",
+    "compatibilityLevel": "JAVA_8",
+    "client": [
+        "EntityRendererMixin",
+        "FontRendererMixin",
+        "GuiImageMenuItem",
+        "GuiMainMenuItem",
+        "GuiScreenMixin",
+        "ItemRendererMixin",
+        "MinecraftMixin",
+        "Mode18IpsetMixin",
+        "RenderRendererMenuItem",
+        "RenderMixin"
+    ],
+    "mixins": [
+        "GuiUtilsMixin",
+        "InventoryPlayerMixin",
+        "NorlMixin",
+        "GuiPlayerTabOverlayMixin"
+    ]
 }
