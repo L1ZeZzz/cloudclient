@@ -1,7 +1,7 @@
 {
     "required": true,
-    "package": "dev.cloudm.cmixins",
-    "refmap": "mixins.cloudm.refmap.json",
+    "package": "dev.cloudmc.mixins",
+    "refmap": "mixins.cloudmc.refmap.json",
     "compatibilityLevel": "JAVA_8",
     "client": [
         "EntityRendererMixin",
@@ -18,7 +18,6 @@
     "mixins": [
         "GuiUtilsMixin",
         "InventoryPlayerMixin",
-        "NorlMixin",
-        "GuiPlayerTabOverlayMixin"
+        "NorlMixin"
     ]
 }
