@@ -17,7 +17,6 @@
     ],
     "mixins": [
         "GuiUtilsMixin",
-        "InventoryPlayerMixin",
-        "NorlMixin"
+        "InventoryPlayerMixin"
     ]
 }
